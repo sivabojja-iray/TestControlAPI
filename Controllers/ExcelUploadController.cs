@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
-using System.Text.RegularExpressions;
-using System.Xml;
-using System.Xml.Linq;
 using TestControlAPI.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TestControlAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ExcelUploadController : ControllerBase
@@ -205,8 +202,7 @@ namespace TestControlAPI.Controllers
             _fileValidator = fileValidator;
         }
 
-        [HttpPost]
-        [Route("fileupload")]
+        [HttpPost(Name ="fileupload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             if (!_fileValidator.IsValid(file, out string validationMessage))
