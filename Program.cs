@@ -51,6 +51,7 @@ namespace TestControlAPI
             builder.Services.AddScoped<FileValidator>();
             builder.Services.AddScoped<ReadExcelProcess>();
             builder.Services.AddScoped<ReadColumnValueProcess>();
+            builder.Services.AddScoped<ReadRowCellValue>();
 
 
             var app = builder.Build();
